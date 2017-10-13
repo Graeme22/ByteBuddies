@@ -2,43 +2,53 @@ package bytebuddies.corgaday.bytebuddies.render;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 
 public class Sprite {
 
-    private Bitmap animation;
-    private int x;
-    private int y;
-    private Rect r;
-    private int fps;
+    private Bitmap[] bmp;
+    private float x;
+    private float y;
     private int frameCount;
     private int frame;
     private long timer;
     private int height;
     private int width;
 
-    public Sprite(Bitmap bmp) {
-        r = new Rect(0, 0, 0, 0);
+    public Sprite(Bitmap[] bmp) {
         timer = 0;
         frame = 0;
         x = -100;
         y = -100;
     }
 
-    public int getX() {
+    public void draw(Canvas c) {
+        c.drawBitmap(bmp[frame], x, y, null);
+    }
+
+    public float getX() {
         return this.x;
     }
 
-    public void setX(int i) {
-        this.x = i;
+    public void setX(float f) {
+        this.x = f;
     }
 
-    public int getY() {
+    public void nextFrame() {
+        if(!(frame == bmp.length - 1)) frame++;
+        else frame = 0;
+    }
+
+    public void incrementPos(float fX, float fY) {
+        this.x += fX;
+        this.y += fY;
+    }
+
+    public float getY() {
         return this.y;
     }
 
-    public void setY(int i) {
-        this.y = i;
+    public void setY(float f) {
+        this.y = f;
     }
 
 }

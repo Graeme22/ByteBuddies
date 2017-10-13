@@ -1,91 +1,131 @@
 package bytebuddies.corgaday.bytebuddies.player;
 
-import android.graphics.Bitmap;
-
+import bytebuddies.corgaday.bytebuddies.render.Sprite;
+import bytebuddies.corgaday.bytebuddies.resources.EDamage;
 import bytebuddies.corgaday.bytebuddies.resources.EEffect;
 import bytebuddies.corgaday.bytebuddies.resources.EHero;
 
 public abstract class BaseHero {
 
 	//corgaday loading screen!
-
-    private Bitmap walking;
-    private Bitmap dead;
-    private Bitmap attack;
-	private int x = 0;
-    private int y = 0;
+    private Sprite walk, die, attack, ability1, ability2, ability3;
 	private EHero hero;
-	private int currentHealth;
+	private int currentHealth, currentShield, currentMR, currentArmor;
+	private float currentAttackSpeed, currentMoveSpeed, x, y;
+	private boolean isSilenced;
+	private Sprite sprite;
 	
-	public BaseHero(int iHealth, EHero eH/*, Bitmap bWalking, Bitmap bDead, Bitmap bAttack*/) {
-		this.setCurrentHealth(eH.getHealth());
+	public BaseHero(int iHealth, EHero eH) {
+		this.currentHealth = eH.getHealth();
+		this.currentShield = 0;
+		this.currentMoveSpeed = eH.getMoveSpeed();
+		this.currentAttackSpeed = eH.getAttackSpeed();
+		this.currentArmor = eH.getArmor();
+		this.currentMR = eH.getMR();
+		this.x = -100f;
+		this.y = -100f;
+		this.isSilenced = false;
 		this.hero = eH;
-        /*this.walking = bWalking;
-        this.dead = bDead;
-        this.attack = bAttack;*/
 	}
 
-	public abstract void ability1();
-	public abstract void ability2();
-	public abstract void ability3();
+	public abstract void onAbility1();
+	public abstract void onAbility2();
+	public abstract void onAbility3();
 	public void onDeath() {}
 
-	public void applyEffect(EEffect eE) {
-		//clock needs to know duration of effect
+	public void update() {}
+
+	public void applyEffect(EEffect eE, long msTime, float strength) {
 		switch(eE) {
-			case ATTACKFAST:
+			/*
+			thread.setEffectDelay(msTime, this, eE, strength);
+			do this for each case
+			 */
+			case CHANGEATTACKSPEED:
+				this.currentAttackSpeed *= strength;
 				break;
-			case ATTACKSLOW:
-				break;
-			case MOVEFAST:
-				break;
-			case MOVESLOW:
-				break;
-			case FAIL:
-				break;
-			case STUN:
-				break;
-			case SILENCE:
+			case CHANGEMOVESPEED:
+				this.currentMoveSpeed *= strength;
 				break;
 			case SHIELD:
+				this.currentShield += strength;
+				break;
+			case CHANGEMR:
+				this.currentMR *= strength;
+				break;
+			case CHANGEARMOR:
+				this.currentArmor *= strength;
+				break;
+			default:
 				break;
 		}
 	}
 
-	public void takeDamage(int amount) {
-
+	public void applyEffect(EEffect eE, long msTime) {
+		switch(eE) {
+			/*
+			thread.setEffectDelay(msTime, this, eE);
+			do this for each case
+			 */
+			case STUN:
+				this.currentMoveSpeed = 0;
+				break;
+			case SILENCE:
+				//make sure fail fails silencing abilities
+				//can't use abilities
+				break;
+			default:
+				break;
+		}
 	}
 
-	public void dealDamage() {
+	public void takeDamage(int amount, EDamage type) {
+		//apply shield first, which isn't affected by armor or MR
+		if(this.currentShield > 0) {
+			if(this.currentShield >= amount) {
+				this.currentShield -= amount;
+				return;
+			} else {
+				amount -= this.currentShield;
+				this.currentShield = 0;
+			}
+		}
 
+		//apply armor and magic resistance. notice this also takes into account true damage by virtue of doing nothing.
+		if(type == EDamage.MAGIC) amount *= (100 - this.currentMR) / 100;
+		else if(type == EDamage.PHYSICAL) amount *= (100 - this.currentArmor) / 100;
+
+		//deal damage
+		this.currentHealth -= amount;
+		if(this.currentHealth < 0) this.onDeath();
 	}
 
-	public int getX() {
-		return this.x;
+	protected void setCurrentHealth(int health) {
+		this.currentHealth = health;
 	}
 
-	public int getY() {
-        return this.y;
+	public float getX() { return this.x; }
+
+	public float getY() { return this.y; }
+
+	public void setPos(float posX, float posY) {
+		this.x = posX;
+		this.y = posY;
 	}
 
-	public void setX(int i) {
-		this.x = i;
+	public void addToPos(float posX, float posY) {
+		this.x += posX;
+		this.y += posY;
 	}
-
-	public void setY(int i) {
-        this.y = i;
-    }
 
 	public int getCurrentHealth() {
 		return this.currentHealth;
 	}
 
-	public void setCurrentHealth(int hp) {
-		this.currentHealth = hp;
-	}
-
 	public EHero getHero() {
 		return this.hero;
 	}
+
+	public Sprite getSprite() { return this.sprite; }
 	
 }

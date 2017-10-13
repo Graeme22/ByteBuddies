@@ -12,22 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
+import android.widget.ImageView;
 
-import bytebuddies.corgaday.bytebuddies.engine.GameThread;
-import bytebuddies.corgaday.bytebuddies.player.Player;
-import bytebuddies.corgaday.bytebuddies.util.Settings;
-
+import bytebuddies.corgaday.bytebuddies.resources.EHero;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
+    private SensorManager sm;
+    private Sensor accelerometer;
+    private ImageView iv;
     private Intent intent;
     private DisplayMetrics dm;
     private BluetoothAdapter ba;
-    public static Player player;
-    private SensorManager sm;
-    private Sensor accelerometer;
-    private GameThread gt;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,17 +31,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        player = new Player();
         sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, accelerometer, sm.SENSOR_DELAY_GAME);
+        iv = (ImageView)findViewById(R.id.imageView);
         dm = new DisplayMetrics();
         ba = BluetoothAdapter.getDefaultAdapter();
-        if(ba == null) {
-            Toast.makeText(this, "Bluetooth not supported.", Toast.LENGTH_LONG);
-            this.finish();
-        }
-        gt = new GameThread(true);
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         if(ba.isEnabled()) {
             intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -59,9 +50,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent se) {
         float x = se.values[1];
         float y = se.values[0];
-
-        player.moveChampion(se.values[0], se.values[1], 4f, Settings.SENSITIVITY);
-        player.rotateChampion(x, y, Settings.SENSITIVITY);
+        rotateImage(x, y);
+        moveChampion(se.values[0], se.values[1], 4f, 3.08f);
     }
 
     @Override
@@ -75,6 +65,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onPause() {
         super.onPause();
         sm.unregisterListener(this);
+    }
+
+    public void rotateImage(float pitch, float roll) {
+        float theta = (float)Math.atan2(-pitch, -roll);
+        iv.setRotation(270-(int)Math.toDegrees(theta));
+    }
+
+    public void moveChampion(/*Player player, */float pitch, float roll, float speed, float sensitivity) {
+        if(Math.abs(pitch) + Math.abs(roll) > sensitivity) {
+            iv.setTranslationX(iv.getTranslationX() + speed * (pitch > 0 ? -1 : 1) * (Math.abs(pitch) > sensitivity ? 1 : (Math.abs(pitch) / sensitivity)));
+            iv.setTranslationY(iv.getTranslationY() + speed * (roll > 0 ? 1 : -1) * (Math.abs(roll) > sensitivity ? 1 : (Math.abs(roll) / sensitivity)));
+        }
     }
 
 }

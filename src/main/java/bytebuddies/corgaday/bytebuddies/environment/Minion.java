@@ -1,15 +1,17 @@
-package bytebuddies.corgaday.bytebuddies;
+package bytebuddies.corgaday.bytebuddies.environment;
 
 import bytebuddies.corgaday.bytebuddies.resources.EMinion;
 
-public abstract class BaseMinion {
+public abstract class Minion {
 
-	private Point location;
+	private float x;
+	private float y;
 	private int currentHealth;
 	private EMinion minion;
 	
-	public BaseMinion(Point p, int iHealth, EMinion eM) {
-		this.setLocation(p);
+	public Minion(int iX, int iY, EMinion eM) {
+		this.setX(iX);
+		this.setY(iY);
 		this.setCurrentHealth(eM.getHealth());
 		this.minion = eM;
 	}
@@ -17,12 +19,16 @@ public abstract class BaseMinion {
 	public abstract void attack();
 	public abstract void defend();
 
-	public Point getLocation() {
-		return this.location;
+	public float getX() { return x;	}
+
+	public float getY() { return y;	}
+
+	public void setX(float x) {
+		this.x = x;
 	}
 
-	public void setLocation(Point p) {
-		this.location = p;
+	public void setY(float y) {
+		this.y = y;
 	}
 
 	public int getCurrentHealth() {

@@ -2,9 +2,8 @@ package bytebuddies.corgaday.bytebuddies.resources;
 
 public enum EMinion {
 	
-	MELEEMINION(400, 5, 1),
-	RANGEDMINION(400, 3, 2),
-	SUPERMINION(1000, 25, 1);
+	MELEEMINION(500, 5, 1),
+	RANGEDMINION(450, 3, 2);
 	
 	EMinion(int iHealth, int iDamage, int iRange) {
 		this.health = iHealth;

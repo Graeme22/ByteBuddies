@@ -2,21 +2,23 @@ package bytebuddies.corgaday.bytebuddies.resources;
 
 public enum ETower {
 
-	MAGE1("Arcane Spire", 15000, 200, 2, 250, true, 1f),
+	MAGE1("Arcane Spire", 1000, 200, 3, 150, true, 1f),
+	MAGE2A("Battle Mage", 1200, 250, 3, 175, true, 1.25f),
+	MAGE2B("Channeler Adept", 1500, 5, 3, 200, false, 60f),
+	MAGE3AA("Magma Warlock", 1400, 300, 3, 250, true, 1.25f),
+	MAGE3AB("Stormlord", 1400, 500, 4, 250, false, 0.5f),
+	MAGE3BA("Archmage", 1600, 7, 3, 300, false, 60f),
+	MAGE3BB("Necromancer", 1600, 2, 2, 300, true, 60f),//tower attacks all targets around it, not just 1
 
-	ARROW1("Peasant Archers", 12000, 100, 3, 100, false, 2f),
-	ARROW2A("King's Huntsmen", 14000, 120, 3, 150, false, 2.1f),
+	ARROW1("Arrow Tower", 1200, 100, 3, 100, false, 2f),
+	ARROW2A("Watchtower", 1400, 120, 3, 150, false, 2f),
+	ARROW2B("Guardtower", 1500, 220, 3, 150, false, 1.25f),
+	ARROW3AA("Marksman Tower", 1600, 130, 4, 180, false, 2.25f),
+	ARROW3AB("Ranger Tower", 1600, 50, 3, 200, false, 6.5f),
+	ARROW3BA("Crossbow Tower", 1700, 300, 3, 200, false, 1.75f),
+	ARROW3BB("Cannon Tower", 2000, 250, 2, 250, true, 1f),
 
-	BARRACKS1("Barracks", 12000, 0, 0, 150, false, 0.2f),
-	BARRACKS2A("Battle School", 16000, 0, 0, 200, false, 0.25f),
-	BARRACKS2B("Soldiers' Quarters", 15000, 0, 0, 175, false, 0.25f),
-	BARRACKS3AA("Elite Academy", 18000, 0, 0, 250, false, 0.25f),
-	BARRACKS3AB("Swordmasters", 18000, 0, 0, 200, false, 0.2f),
-	BARRACKS3BA("Fortified Estate", 17000, 0, 0, 200, false, 0.25f),
-	BARRACKS3BB("Veteran Knights", 17000, 0, 0, 250, false, 0.15f),
-
-	MAINTOWERA("King's Castle", 100000, 0, 0, 0, false, 0.1f),
-	MAINTOWERB("", 1, 250, 3, 0, false, 1.5f);
+	MAINTOWERA("King's Castle", 10000, 200, 2, 0, false, 1.5f);
 	
 	ETower(String sName, int iHealth, int iDamage, int iRange, int iCost, boolean bSplash, float iRate) {
 		this.health = iHealth;
