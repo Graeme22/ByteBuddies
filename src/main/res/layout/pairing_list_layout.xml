@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <RelativeLayout android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" tools:text="Make sure your devices are paired in settings!" android:text="Connect To Device" android:textSize="30sp" android:textAlignment="center" android:id="@+id/textView1"/>
+
+    <TextView android:layout_height="wrap_content" android:layout_width="match_parent" tools:text="Make sure your devices are paired in settings!" android:text="Make sure your devices are paired in settings!" android:textSize="18sp" android:id="@+id/textView2" android:elevation="11dp" android:layout_alignParentBottom="true"/>
+
+    <ListView android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/listViewId" android:layout_weight="1"/>
+
+</LinearLayout>
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.engine;
+package bytebuddies.corgaday.bytebuddies.engine;
 
 import android.graphics.Canvas;
 import android.graphics.DrawFilter;
@@ -13,7 +13,7 @@ class MainThread extends Thread {
     private GamePanel gamePanel;
     public static Canvas canvas;
 
-    private boolean running;
+    public boolean running;
 //    private double averageFPS;
 
     MainThread (SurfaceHolder surfaceHolder, GamePanel gamePanel) {
@@ -21,8 +21,6 @@ class MainThread extends Thread {
         this.surfaceHolder = surfaceHolder;
         this.gamePanel = gamePanel;
     }
-
-    void setRunning (boolean running) { this.running = running; }
 
     @Override
     public void run () {

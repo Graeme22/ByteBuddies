@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.util;
+package bytebuddies.corgaday.bytebuddies.util;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,7 +6,7 @@ import android.hardware.SensorManager;
 
 import java.util.UUID;
 
-import etbcor.bluetoothgame.engine.Dimension;
+import bytebuddies.corgaday.bytebuddies.engine.Dimension;
 
 public class Constants {
     public static int SCREEN_WIDTH;
@@ -32,7 +32,6 @@ public class Constants {
 	// Key names received from the BluetoothChatService Handler
 	public static final String DEVICE_NAME = "device_name";
 	public static final String TOAST = "toast";
-
 
     public static long INIT_TIME;
 }

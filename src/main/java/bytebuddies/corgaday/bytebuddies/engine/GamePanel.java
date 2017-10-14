@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.engine;
+package bytebuddies.corgaday.bytebuddies.engine;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import etbcor.bluetoothgame.util.Constants;
-import etbcor.bluetoothgame.scenes.SceneManager;
+import bytebuddies.corgaday.bytebuddies.util.Constants;
+import bytebuddies.corgaday.bytebuddies.scenes.SceneManager;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
@@ -35,7 +35,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated (SurfaceHolder holder) {
         thread = new MainThread(getHolder(), this);
 
-        thread.setRunning(true);
+        thread.running = true;
         thread.start();
     }
 
@@ -49,7 +49,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         boolean retry = true;
         while (retry) {
             try {
-                thread.setRunning(false);
+                thread.running = false;
                 thread.join();
             } catch (Exception e) {
                 e.printStackTrace();

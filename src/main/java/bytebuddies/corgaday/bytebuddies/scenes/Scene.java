@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.scenes;
+package bytebuddies.corgaday.bytebuddies.scenes;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;

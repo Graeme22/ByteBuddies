@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.engine;
+package bytebuddies.corgaday.bytebuddies.engine;
 
 public class Dimension {
     public int width;

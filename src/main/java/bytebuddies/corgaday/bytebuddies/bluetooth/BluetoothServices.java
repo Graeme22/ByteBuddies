@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.bluetooth;
+package bytebuddies.corgaday.bytebuddies.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-import etbcor.bluetoothgame.util.Constants;
+import bytebuddies.corgaday.bytebuddies.util.Constants;
 /**
  * This class does all the work for setting up and managing Bluetooth
  * connections with other devices. It has a thread that listens for

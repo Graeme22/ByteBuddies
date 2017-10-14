@@ -1,24 +1,19 @@
-package etbcor.bluetoothgame.engine;
+package bytebuddies.corgaday.bytebuddies.engine;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.NinePatch;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.NinePatchDrawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
+import bytebuddies.corgaday.bytebuddies.R;
 
-import etbcor.bluetoothgame.R;
-import etbcor.bluetoothgame.util.Constants;
+import bytebuddies.corgaday.bytebuddies.util.Constants;
 
-import static etbcor.bluetoothgame.util.Constants.FRAME;
-import static etbcor.bluetoothgame.util.Utility.drawCenterText;
 
 public class Button {
-	private NinePatchDrawable bg;
+	private BitmapDrawable bg;
 
     private String id;
     private Rect rectangle;
@@ -43,7 +38,7 @@ public class Button {
         this.dimension = dimension;
 
 
-	    bg = (NinePatchDrawable) Constants.RESOURCES.getDrawable(R.drawable.button_stretch);
+	    bg = (BitmapDrawable)Constants.RESOURCES.getDrawable(R.drawable.button_stretch);
 	    bg.setFilterBitmap(false);
 	    bg.setBounds(rectangle);
     }

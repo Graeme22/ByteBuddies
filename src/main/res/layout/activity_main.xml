@@ -4,19 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bytebuddies.corgaday.bytebuddies.MainActivity">
+    tools:context="bytebuddies.corgaday.bytebuddies.engine.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hero_ilyana" />
+    <Button
+        android:id="@+id/button_stretch"
+        android:text="Button"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>
+
 </android.support.constraint.ConstraintLayout>

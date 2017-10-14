@@ -1,19 +1,15 @@
-package etbcor.bluetoothgame.bluetooth;
+package bytebuddies.corgaday.bytebuddies.bluetooth;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.List;
-
-import etbcor.bluetoothgame.R;
-import etbcor.bluetoothgame.util.Utility;
+import bytebuddies.corgaday.bytebuddies.R;
 
 public class PairingList extends Activity {
 

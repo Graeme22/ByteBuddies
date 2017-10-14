@@ -19,7 +19,7 @@ public class Tower {
 	public void attack(){}
 
 	public void upgrade(ETower eT) {
-		if(Utilities.GOLD >= eT.getCost()) Utilities.GOLD -= eT.getCost();
+		//subtract gold
 		this.tower = eT;
 	}
 

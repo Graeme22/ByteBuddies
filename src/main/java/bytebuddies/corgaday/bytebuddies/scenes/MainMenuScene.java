@@ -1,4 +1,4 @@
-package etbcor.bluetoothgame.scenes;
+package bytebuddies.corgaday.bytebuddies.scenes;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,13 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
-import etbcor.bluetoothgame.R;
-import etbcor.bluetoothgame.engine.Dimension;
-import etbcor.bluetoothgame.engine.MainActivity;
-import etbcor.bluetoothgame.util.Constants;
-import etbcor.bluetoothgame.engine.ButtonManager;
+import bytebuddies.corgaday.bytebuddies.R;
+import bytebuddies.corgaday.bytebuddies.engine.Dimension;
+import bytebuddies.corgaday.bytebuddies.engine.MainActivity;
+import bytebuddies.corgaday.bytebuddies.util.Constants;
+import bytebuddies.corgaday.bytebuddies.engine.ButtonManager;
 
-import static etbcor.bluetoothgame.util.Constants.FRAME;
+import static bytebuddies.corgaday.bytebuddies.util.Constants.FRAME;
 
 class MainMenuScene implements Scene {
 	private MainActivity ma;
