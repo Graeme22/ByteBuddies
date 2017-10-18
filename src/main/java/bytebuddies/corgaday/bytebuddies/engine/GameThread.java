@@ -16,7 +16,7 @@ class GameThread extends Thread {
     private GamePanel gamePanel;
     public static Canvas canvas;
 
-    public boolean running;
+    private boolean running;
 //    private double averageFPS;
 
     GameThread(SurfaceHolder surfaceHolder, GamePanel gamePanel) {
@@ -27,6 +27,10 @@ class GameThread extends Thread {
 
     public void setEffectDelay(long msTime, BaseHero hero, EEffect eE, float strength) {
 
+    }
+
+    public void setRunning(boolean b) {
+        this.running = b;
     }
 
     @Override

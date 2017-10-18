@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Toast.makeText(getBaseContext(), "Bluetooth turned on", Toast.LENGTH_LONG).show();
             openList();
         } else if (reqCode == LIST_CODE && resCode != RESULT_CANCELED) {
-            gamePanel.getMainThread().running = true;
+            gamePanel.getGameThread().setRunning(true);
             int id = data.getIntExtra("id", -1);
             int pos = data.getIntExtra("pos", -1);
             if (pos != -1) {
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Intent in = new Intent("pair_filter");
         in.putExtras(bn);
 
-        gamePanel.getMainThread().running = false;
+        gamePanel.getGameThread().setRunning(false);
 
         startActivityForResult(in, LIST_CODE);
     }

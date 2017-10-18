@@ -27,7 +27,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
     }
 
-    public GameThread getMainThread () {
+    public GameThread getGameThread() {
         return thread;
     }
 
@@ -35,7 +35,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated (SurfaceHolder holder) {
         thread = new GameThread(getHolder(), this);
 
-        thread.running = true;
+        thread.setRunning(true);
         thread.start();
     }
 
@@ -49,7 +49,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         boolean retry = true;
         while (retry) {
             try {
-                thread.running = false;
+                thread.setRunning(false);
                 thread.join();
             } catch (Exception e) {
                 e.printStackTrace();

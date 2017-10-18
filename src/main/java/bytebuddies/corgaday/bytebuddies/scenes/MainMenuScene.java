@@ -100,7 +100,7 @@ class MainMenuScene implements Scene {
 							ma.activateBT();
 
                         	// "start" a new game
-                            SceneManager.setScene(SceneManager.GAME_PLAY_SCENE);
+                            //SceneManager.setScene(SceneManager.GAME_PLAY_SCENE);
                             break;
                     }
 
