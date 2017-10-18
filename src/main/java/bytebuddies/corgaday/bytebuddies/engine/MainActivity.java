@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             Toast.makeText(this, "Bluetooth not supported.", Toast.LENGTH_LONG);
             this.finish();
         }
-        gt = new GameThread(true);
+        gt = new GameThread(gamePanel.getHolder(), gamePanel);
         if(ba.isEnabled()) {
             intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, 0);
@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             openList();
         } else if (reqCode == LIST_CODE && resCode != RESULT_CANCELED) {
             gamePanel.getMainThread().running = true;
+            int id = data.getIntExtra("id", -1);
             int pos = data.getIntExtra("pos", -1);
             if (pos != -1) {
                 otherAddress = bdl[pos].getAddress();
