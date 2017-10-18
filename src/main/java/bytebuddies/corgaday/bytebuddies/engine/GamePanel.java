@@ -10,7 +10,7 @@ import bytebuddies.corgaday.bytebuddies.util.Constants;
 import bytebuddies.corgaday.bytebuddies.scenes.SceneManager;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
-    private MainThread thread;
+    private GameThread thread;
     private SceneManager sceneManager;
 
     public GamePanel (Context context, MainActivity ma) {
@@ -21,19 +21,19 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         Constants.CURRENT_CONTEXT = context;
         Constants.RESOURCES = getResources();
 
-        thread = new MainThread(getHolder(), this);
+        thread = new GameThread(getHolder(), this);
         sceneManager = new SceneManager(ma);
 
         setFocusable(true);
     }
 
-    public MainThread getMainThread () {
+    public GameThread getMainThread () {
         return thread;
     }
 
     @Override
     public void surfaceCreated (SurfaceHolder holder) {
-        thread = new MainThread(getHolder(), this);
+        thread = new GameThread(getHolder(), this);
 
         thread.running = true;
         thread.start();
