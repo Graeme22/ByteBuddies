@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import bytebuddies.corgaday.bytebuddies.R;
@@ -13,7 +13,7 @@ import bytebuddies.corgaday.bytebuddies.util.Constants;
 
 
 public class Button {
-	private BitmapDrawable bg;
+	private NinePatchDrawable bg;
 
     private String id;
     private Rect rectangle;
@@ -38,7 +38,7 @@ public class Button {
         this.dimension = dimension;
 
 
-	    bg = (BitmapDrawable)Constants.RESOURCES.getDrawable(R.drawable.button_stretch);
+	    bg = (NinePatchDrawable)Constants.RESOURCES.getDrawable(R.drawable.button_stretch);
 	    bg.setFilterBitmap(false);
 	    bg.setBounds(rectangle);
     }

@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sm.registerListener(this, accelerometer, sm.SENSOR_DELAY_GAME);
 
         dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
         Constants.SCREEN_WIDTH = dm.widthPixels;
         Constants.SCREEN_HEIGHT = dm.heightPixels;
         int resourceID = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
@@ -123,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         Constants.APPLICATION_CONTEXT = getApplicationContext();
         Constants.MAC = Utilities.getMacAddress();
         Constants.SENSOR_SERVICE = (SensorManager)getSystemService(SENSOR_SERVICE);
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
         gamePanel = new GamePanel(this, this);
         setContentView(gamePanel);
