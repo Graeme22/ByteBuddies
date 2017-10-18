@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                         e.printStackTrace();
                     }
                 }
-            }
+            } //TODO: else go back to main menu
         }
 
     }
