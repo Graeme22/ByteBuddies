@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_main);
-        player = new Player();
+        //player = new Player(HeroX);
         sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, accelerometer, sm.SENSOR_DELAY_GAME);
@@ -204,8 +204,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             } else {
                 try {
                     device.createRfcommSocketToServiceRecord(UUID.fromString(Constants._UUID));
-                    //BluetoothSocket bs = new BluetoothSocket();
-                    //bs.connect();
+                    //connect here
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

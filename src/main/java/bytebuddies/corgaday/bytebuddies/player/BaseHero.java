@@ -1,19 +1,21 @@
 package bytebuddies.corgaday.bytebuddies.player;
 
-import bytebuddies.corgaday.bytebuddies.render.Sprite;
+import java.io.Serializable;
+
 import bytebuddies.corgaday.bytebuddies.resources.EDamage;
 import bytebuddies.corgaday.bytebuddies.resources.EEffect;
 import bytebuddies.corgaday.bytebuddies.resources.EHero;
 
-public abstract class BaseHero {
+public abstract class BaseHero implements Serializable {
 
-	//corgaday loading screen!
-    private Sprite walk, die, attack, ability1, ability2, ability3;
-	private EHero hero;
+	private transient EHero hero;
 	private int currentHealth, currentShield, currentMR, currentArmor;
-	private float currentAttackSpeed, currentMoveSpeed, x, y;
-	private boolean isSilenced;
-	private Sprite sprite;
+	private float currentAttackSpeed, x = -100f, y = -100f;
+	private transient float currentMoveSpeed;
+	private transient int range, regen, damage, cost;
+	private transient String name;
+	private boolean isSilenced = false;
+	private EDamage damageType;
 	
 	public BaseHero(int iHealth, EHero eH) {
 		this.currentHealth = eH.getHealth();
@@ -22,9 +24,13 @@ public abstract class BaseHero {
 		this.currentAttackSpeed = eH.getAttackSpeed();
 		this.currentArmor = eH.getArmor();
 		this.currentMR = eH.getMR();
-		this.x = -100f;
-		this.y = -100f;
 		this.isSilenced = false;
+		this.range = eH.getRange();
+		this.regen = eH.getRegen();
+		this.name = eH.getName();
+		this.damageType = eH.getDamageType();
+		this.damage = eH.getDamage();
+		this.cost = eH.getCost();
 		this.hero = eH;
 	}
 
@@ -105,15 +111,16 @@ public abstract class BaseHero {
 	}
 
 	public float getX() { return this.x; }
-
 	public float getY() { return this.y; }
+
+	public float getCurrentMoveSpeed() { return this.currentMoveSpeed; }
 
 	public void setPos(float posX, float posY) {
 		this.x = posX;
 		this.y = posY;
 	}
 
-	public void addToPos(float posX, float posY) {
+	public void incrementPos(float posX, float posY) {
 		this.x += posX;
 		this.y += posY;
 	}
@@ -125,7 +132,5 @@ public abstract class BaseHero {
 	public EHero getHero() {
 		return this.hero;
 	}
-
-	public Sprite getSprite() { return this.sprite; }
 	
 }

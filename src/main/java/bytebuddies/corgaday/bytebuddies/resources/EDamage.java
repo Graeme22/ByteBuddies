@@ -1,6 +1,8 @@
 package bytebuddies.corgaday.bytebuddies.resources;
 
-public enum EDamage {
+import java.io.Serializable;
+
+public enum EDamage implements Serializable {
 
     MAGIC, PHYSICAL, TRUE;
 

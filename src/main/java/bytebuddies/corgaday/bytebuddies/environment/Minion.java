@@ -1,13 +1,14 @@
 package bytebuddies.corgaday.bytebuddies.environment;
 
+import java.io.Serializable;
+
 import bytebuddies.corgaday.bytebuddies.resources.EMinion;
 
-public abstract class Minion {
+public class Minion implements Serializable {
 
-	private float x;
-	private float y;
+	private float x, y;
 	private int currentHealth;
-	private EMinion minion;
+	private transient EMinion minion;
 	
 	public Minion(int iX, int iY, EMinion eM) {
 		this.setX(iX);
@@ -16,8 +17,13 @@ public abstract class Minion {
 		this.minion = eM;
 	}
 
-	public abstract void attack();
-	public abstract void defend();
+	public void attack() {
+
+	}
+
+	public void defend() {
+
+	}
 
 	public float getX() { return x;	}
 

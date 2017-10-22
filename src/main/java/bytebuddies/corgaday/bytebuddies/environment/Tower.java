@@ -1,12 +1,14 @@
 package bytebuddies.corgaday.bytebuddies.environment;
 
+import java.io.Serializable;
+
 import bytebuddies.corgaday.bytebuddies.resources.ETower;
-import bytebuddies.corgaday.bytebuddies.util.Utilities;
 
-public class Tower {
+public class Tower implements Serializable {
 
-	private ETower tower;
+	private transient ETower tower;
 	private int currentHealth;
+	//tower position coordinates are for a GRID, so they aren't floats
 	private int x, y;
 	
 	public Tower(int posX, int posY, int iHealth, ETower eT) {
@@ -16,7 +18,9 @@ public class Tower {
 		this.tower = eT;
 	}
 
-	public void attack(){}
+	public void attack() {
+
+	}
 
 	public void upgrade(ETower eT) {
 		//subtract gold
