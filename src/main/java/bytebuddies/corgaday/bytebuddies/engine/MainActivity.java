@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.Window;
@@ -26,6 +27,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import bytebuddies.corgaday.bytebuddies.R;
+import bytebuddies.corgaday.bytebuddies.bluetooth.PairingList;
 import bytebuddies.corgaday.bytebuddies.player.Player;
 import bytebuddies.corgaday.bytebuddies.util.Constants;
 import bytebuddies.corgaday.bytebuddies.util.Settings;
@@ -180,39 +182,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             openList();
         } else if (reqCode == LIST_CODE && resCode != RESULT_CANCELED) {
             gamePanel.getGameThread().setRunning(true);
-            int id = data.getIntExtra("id", -1);
-            int pos = data.getIntExtra("pos", -1);
-            if (pos != -1) {
-                otherAddress = bdl[pos].getAddress();
-                BluetoothDevice device = ba.getRemoteDevice(bdl[pos].getAddress());
-                boolean goFirst = Utilities.compareMacs(Constants.MAC, bdl[pos].getAddress());
+            BluetoothDevice device = ba.getRemoteDevice(PairingList.EXTRA_DEVICE_ADDRESS);
+            boolean goFirst = Utilities.compareMacs(Constants.MAC, PairingList.EXTRA_DEVICE_ADDRESS);
 
-                if (goFirst) {
-                    try {
-                        BluetoothServerSocket bss = ba.listenUsingRfcommWithServiceRecord("ByteBuddies", UUID.fromString(Constants._UUID));
-                        boolean notConnected = true;
-                        while (notConnected) {
-                            BluetoothSocket bs = bss.accept();
-                            bss.close();
-                            if (bs.getRemoteDevice().getAddress() != device.getAddress()) {
-                                bs.close();
-                            } else {
-                                notConnected = false;
-                            }
+            if (goFirst) {
+                try {
+                    BluetoothServerSocket bss = ba.listenUsingRfcommWithServiceRecord("ByteBuddies", UUID.fromString(Constants._UUID));
+                    boolean notConnected = true;
+                    while (notConnected) {
+                        BluetoothSocket bs = bss.accept();
+                        bss.close();
+                        if (bs.getRemoteDevice().getAddress() != device.getAddress()) {
+                            bs.close();
+                        } else {
+                            notConnected = false;
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-                } else {
-                    try {
-                        device.createRfcommSocketToServiceRecord(UUID.fromString(Constants._UUID));
-                        //BluetoothSocket bs = new BluetoothSocket();
-                        //bs.connect();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } //TODO: else go back to main menu
+            } else {
+                try {
+                    device.createRfcommSocketToServiceRecord(UUID.fromString(Constants._UUID));
+                    //BluetoothSocket bs = new BluetoothSocket();
+                    //bs.connect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
     }

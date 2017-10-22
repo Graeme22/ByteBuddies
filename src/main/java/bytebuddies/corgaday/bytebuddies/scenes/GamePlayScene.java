@@ -67,7 +67,6 @@ class GamePlayScene implements Scene {
         }
 
         canvas.drawBitmap(bg, new Rect(0, 0, 512, 256), new Rect(FRAME.left, FRAME.top, FRAME.right, FRAME.bottom), null);
-
         canvas.drawBitmap(buttonBg, new Rect(0, 0, 32, 32), new Rect(FRAME.left, FRAME.top, FRAME.left + FRAME.width / 8, FRAME.bottom), null);
         canvas.drawBitmap(buttonBg2, new Rect(0, 0, 32, 32), new Rect(FRAME.right - FRAME.width / 8, FRAME.top, FRAME.right, FRAME.bottom), null);
 
