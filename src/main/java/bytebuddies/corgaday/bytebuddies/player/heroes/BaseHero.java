@@ -1,4 +1,4 @@
-package bytebuddies.corgaday.bytebuddies.player;
+package bytebuddies.corgaday.bytebuddies.player.heroes;
 
 import java.io.Serializable;
 
@@ -36,7 +36,6 @@ public abstract class BaseHero implements Serializable {
 
 	public abstract void onAbility1();
 	public abstract void onAbility2();
-	public abstract void onAbility3();
 	public void onDeath() {}
 
 	public void update() {}

@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Set<BluetoothDevice> pairedDevices;
     BluetoothDevice bdl[];
     String devices[];
-    String otherAddress;
 
-    private void connectDevice(Intent data, boolean secure) {
-        BluetoothDevice device = ba.getRemoteDevice(otherAddress);
+    public void connectDevice(Intent data, boolean secure) {
+        String address = data.getExtras().getString(PairingList.EXTRA_DEVICE_ADDRESS);
+        BluetoothDevice device = ba.getRemoteDevice(address);
         mChatService.connect(device, secure);
     }
 
@@ -162,8 +162,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         float x = se.values[1];
         float y = se.values[0];
 
-        player.moveChampion(se.values[0], se.values[1], 4f, Settings.SENSITIVITY);
-        player.rotateChampion(x, y, Settings.SENSITIVITY);
+        if(player != null) {
+            player.moveChampion(se.values[0], se.values[1], Settings.SENSITIVITY);
+            player.rotateChampion(x, y, Settings.SENSITIVITY);
+        }
     }
 
     @Override

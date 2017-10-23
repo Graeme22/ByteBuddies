@@ -417,6 +417,7 @@ public class BluetoothServices {
 		private final InputStream mmInStream;
 		private final OutputStream mmOutStream;
 
+
 		public ConnectedThread(BluetoothSocket socket, String socketType) {
 			Log.d(TAG, "create ConnectedThread: " + socketType);
 			mmSocket = socket;

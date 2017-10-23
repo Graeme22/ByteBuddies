@@ -11,12 +11,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
 import bytebuddies.corgaday.bytebuddies.R;
+import bytebuddies.corgaday.bytebuddies.scenes.SceneManager;
 
 public class PairingList extends Activity {
 
@@ -25,11 +27,6 @@ public class PairingList extends Activity {
 	private ArrayAdapter<String> adapter;
 	private BluetoothAdapter ba;
 	public static String EXTRA_DEVICE_ADDRESS = "device_address";
-
-	@Override
-	protected void onNewIntent (Intent intent) {
-		super.onNewIntent(intent);
-	}
 
 	@Override
 	protected void onCreate (@Nullable Bundle savedInstanceState) {
@@ -69,6 +66,14 @@ public class PairingList extends Activity {
 				finish();
 			}
 		});
+	}
+
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		//connectDevice(data, false);
+
+		SceneManager.setScene(SceneManager.GAME_PLAY_SCENE);
+
 	}
 
 }

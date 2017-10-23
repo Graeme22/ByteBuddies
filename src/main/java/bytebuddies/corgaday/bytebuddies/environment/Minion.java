@@ -8,7 +8,7 @@ public class Minion implements Serializable {
 
 	private float x, y;
 	private int currentHealth;
-	private transient EMinion minion;
+	private EMinion minion;
 	
 	public Minion(int iX, int iY, EMinion eM) {
 		this.setX(iX);

@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import java.io.Serializable;
 
+import bytebuddies.corgaday.bytebuddies.player.heroes.BaseHero;
+
 public class Player implements Serializable {
 
     private BaseHero hero;
@@ -24,8 +26,8 @@ public class Player implements Serializable {
     public void moveChampion(float pitch, float roll, float sensitivity) {
         if(Math.abs(pitch) + Math.abs(roll) > sensitivity) {
             //TODO: check if position isn't out of bounds...
-            float motionX = this.hero.getCurrentMoveSpeed() * (pitch > 0 ? -1 : 1) * (Math.abs(pitch) > sensitivity ? 1 : (Math.abs(pitch) / sensitivity));
-            float motionY = this.hero.getCurrentMoveSpeed() * (roll > 0 ? 1 : -1) * (Math.abs(roll) > sensitivity ? 1 : (Math.abs(roll) / sensitivity));
+            float motionX = this.hero.getCurrentMoveSpeed() * (pitch > 0 ? -1 : 1) * (Math.abs(pitch) > sensitivity ? 1 : (Math.abs(pitch) / (Math.abs(pitch) + Math.abs(roll))));
+            float motionY = this.hero.getCurrentMoveSpeed() * (roll > 0 ? 1 : -1) * (Math.abs(roll) > sensitivity ? 1 : (Math.abs(roll) / (Math.abs(pitch) + Math.abs(roll))));
             this.hero.incrementPos(motionX, motionY);
         }
     }

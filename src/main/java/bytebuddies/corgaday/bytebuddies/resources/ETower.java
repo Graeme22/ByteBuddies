@@ -4,11 +4,11 @@ public enum ETower {
 
 	MAGE1("Arcane Spire", 1000, 200, 3, 150, true, 1f),
 	MAGE2A("Battle Mage", 1200, 250, 3, 175, true, 1.25f),
-	MAGE2B("Channeler Adept", 1500, 5, 3, 200, false, 60f),
+	MAGE2B("Channeler Adept", 1500, 5, 3, 200, false, 30f),
 	MAGE3AA("Magma Warlock", 1400, 300, 3, 250, true, 1.25f),
 	MAGE3AB("Stormlord", 1400, 500, 4, 250, false, 0.5f),
-	MAGE3BA("Archmage", 1600, 7, 3, 300, false, 60f),
-	MAGE3BB("Necromancer", 1600, 2, 2, 300, true, 60f),//tower attacks all targets around it, not just 1
+	MAGE3BA("Archmage", 1600, 7, 3, 300, false, 30f),
+	MAGE3BB("Necromancer", 1600, 5, 2, 300, true, 30f),//tower attacks all targets around it, not just 1
 
 	ARROW1("Arrow Tower", 1200, 100, 3, 100, false, 2f),
 	ARROW2A("Watchtower", 1400, 120, 3, 150, false, 2f),

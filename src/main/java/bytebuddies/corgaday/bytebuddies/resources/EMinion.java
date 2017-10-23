@@ -1,6 +1,8 @@
 package bytebuddies.corgaday.bytebuddies.resources;
 
-public enum EMinion {
+import java.io.Serializable;
+
+public enum EMinion implements Serializable {
 	
 	MELEEMINION(500, 5, 1),
 	RANGEDMINION(450, 3, 2);

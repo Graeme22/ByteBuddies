@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.view.SurfaceHolder;
 
-import bytebuddies.corgaday.bytebuddies.player.BaseHero;
+import bytebuddies.corgaday.bytebuddies.player.heroes.BaseHero;
 import bytebuddies.corgaday.bytebuddies.resources.EEffect;
 
 class GameThread extends Thread {
