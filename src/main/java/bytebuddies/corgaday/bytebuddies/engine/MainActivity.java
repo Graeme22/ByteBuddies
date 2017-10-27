@@ -93,12 +93,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     BluetoothDevice bdl[];
     String devices[];
 
-    public void connectDevice(Intent data, boolean secure) {
-        String address = data.getExtras().getString(PairingList.EXTRA_DEVICE_ADDRESS);
-        BluetoothDevice device = ba.getRemoteDevice(address);
-        mChatService.connect(device, secure);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
